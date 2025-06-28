@@ -1,0 +1,42 @@
+services:
+  web:
+    build:
+      context: .
+    image: mealmetrics-api
+    container_name: mealmetrics_api
+    ports:
+      - "3000:80"
+    depends_on:
+      - db
+      - redis
+    environment:
+      RAILS_ENV: development
+      RAILS_MASTER_KEY: "${RAILS_MASTER_KEY}" # from your local .env or export
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+      REDIS_URL: redis://redis:6379/0
+    volumes:
+      - .:/rails
+    command: ["./bin/dev"] # optional if using foreman or bin/dev for dev servers
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: mealmetrics_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:

@@ -17,7 +17,7 @@ services:
       DATABASE_PASSWORD: password
       REDIS_URL: redis://redis:6379/0
     volumes:
-      - .:/rails
+      - .:/app
     command: ["./bin/dev"] # optional if using foreman or bin/dev for dev servers
 
   db:

@@ -10,5 +10,5 @@ class User < ApplicationRecord
          :jwt_authenticatable,
          jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
 
-  enum role: { admin: "admin", manager: "manager", staff: "staff" }
+  # enum role: { admin: "admin", manager: "manager", staff: "staff" }
 end

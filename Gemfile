@@ -39,6 +39,8 @@ gem "devise"
 
 gem "jwt"
 
+gem "devise-jwt"
+
 gem "pundit"
 
 gem "rotp"
